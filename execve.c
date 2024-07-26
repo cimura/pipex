@@ -28,12 +28,13 @@ int main(int argc, char *argv[])
 	// *** Parent *** //
 	else
 	{
-		char **cmd1;
+		// char **cmd1;
 		
-		cmd1 = ft_split(argv[2], ' ');
+		// cmd1 = ft_split(argv[2], ' ');
 		// do argv[2] command
 		// execve("/bin/ls", cmd1, NULL);
-		wait(NULL);
+		printf("I'm parent\n");
+		// wait(NULL);
 		exit(EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);
