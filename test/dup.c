@@ -10,8 +10,8 @@ int main(int ac, char *av[], char *env[])
     char *grep_args[] = {"grep", "Lausanne", NULL};
     
     // open input and output files (assuming both files exist)
-    in = open("in", O_RDONLY);
-    out = open("out", O_WRONLY); 
+    in = open("infile", O_RDONLY);
+    out = open("outfile", O_WRONLY); 
     
     // replace standard input with input file
     dup2(in, 0);
