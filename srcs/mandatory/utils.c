@@ -6,7 +6,7 @@
 /*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:43:57 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/29 14:50:53 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:06:46 by sshimura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	execute_cmd(char *argv, char *envp[])
 
 	paths = setup_paths(envp);
 	command = ft_split(argv, ' ');
-	path = get_exec_path(paths, command);
+	path = get_exec_path(paths, command, envp);
 	if (path == NULL)
 	{
 		specific_error(command[0]);
@@ -35,7 +35,7 @@ void	execute_cmd(char *argv, char *envp[])
 			free(path);
 		free_str_array(paths);
 		free_str_array(command);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -80,6 +80,8 @@ void	parent(char *argv[], char *envp[], t_file *file)
 		error_exit("fork");
 	if (pid2 == 0)
 		child2_process(argv, envp, file, fd);
+	close(fd[0]);
+	close(fd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, &status, 0);
 	clear_parent(file);

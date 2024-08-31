@@ -6,7 +6,7 @@
 /*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 15:35:02 by sshimura          #+#    #+#             */
-/*   Updated: 2024/08/29 15:29:06 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:08:31 by sshimura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	by_path(char *command);
 void	clear_parent(t_file *file);
 
 // *** get_path ***
-char	*get_exec_path(char **paths, char **command);
+char	*get_exec_path(char **paths, char **command, char **envp);
 char	**setup_paths(char *envp[]);
 
 #endif

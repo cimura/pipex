@@ -6,13 +6,13 @@
 /*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:43:57 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/29 14:40:13 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:07:45 by sshimura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	error_check(char **paths, char **command)
+static void	error_check(char **paths, char **command, char **envp)
 {
 	if (!command || !*command)
 	{
@@ -22,6 +22,8 @@ static void	error_check(char **paths, char **command)
 	if (command[0][0] == '/' || command[0][0] == '.')
 	{
 		if (execve(command[0], command, NULL) != -1)
+			exit (EXIT_SUCCESS);
+		if (execve(command[0], command, envp) != -1)
 			exit (EXIT_SUCCESS);
 		perror(command[0]);
 		exit(127);
@@ -35,14 +37,14 @@ static void	error_check(char **paths, char **command)
 	by_path(command[0]);
 }
 
-char	*get_exec_path(char **paths, char **command)
+char	*get_exec_path(char **paths, char **command, char **envp)
 {
 	int		i;
 	char	*path;
 	char	*before_join;
 
 	i = 0;
-	error_check(paths, command);
+	error_check(paths, command, envp);
 	while (paths[i] != NULL)
 	{
 		before_join = ft_strjoin(paths[i], "/");

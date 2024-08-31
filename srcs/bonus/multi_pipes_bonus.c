@@ -6,7 +6,7 @@
 /*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:51:37 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/29 15:28:27 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:49:00 by sshimura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	first_command(char *argv[], char *envp[], t_file *file)
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
+		dup2(file->in, STDIN_FILENO);
 		if (file->in != -1)
 			execute_cmd(argv[2], envp);
 		exit(EXIT_FAILURE);
@@ -93,7 +94,6 @@ static int	last_command(char *argv[], int argc, char *envp[], t_file *file)
 	if (pid == 0)
 	{
 		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 		dup2(file->out, STDOUT_FILENO);
 		if (file->out != -1)
