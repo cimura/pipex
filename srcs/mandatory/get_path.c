@@ -6,7 +6,7 @@
 /*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:43:57 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/31 18:07:45 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:11:05 by sshimura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	error_check(char **paths, char **command, char **envp)
 	{
 		if (execve(command[0], command, NULL) != -1)
 			exit (EXIT_SUCCESS);
+		// ./pipex infile cat ./cat cat outこれがうまくいかない
 		if (execve(command[0], command, envp) != -1)
 			exit (EXIT_SUCCESS);
 		perror(command[0]);
