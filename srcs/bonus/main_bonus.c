@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cimy <cimy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:51:24 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/31 15:46:24 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:42:21 by cimy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_file	file;
 
-	if (argc == 6 && (!(ft_strncmp("here_doc", argv[1], 8))))
+	if (argc == 6 && (!(ft_strncmp("here_doc\0", argv[1], 9))))
 		here_doc(argv, envp);
 	file.in = open_file(argv[1], INFILE);
 	file.out = open_file(argv[argc - 1], OUTFILE);

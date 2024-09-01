@@ -1,6 +1,6 @@
 NAME		=	pipex
 
-OBJ_DIR		=	./obj/
+OBJ_DIR		=	./objs/
 
 UTIL_DIR	=	srcs/mandatory/
 

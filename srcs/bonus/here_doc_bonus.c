@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshimura <sshimura@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cimy <cimy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 23:42:53 by cimy              #+#    #+#             */
-/*   Updated: 2024/08/17 18:22:17 by sshimura         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:48:59 by cimy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ void	here_doc(char *argv[], char *envp[])
 	{
 		ft_putstr_fd("> ", 1);
 		line = get_next_line(0);
-		if (!line || ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0)
+		if (!line || (ft_strlen(line) == ft_strlen(argv[2]) + 1 && 
+              ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0 && 
+              line[ft_strlen(argv[2])] == '\n'))
 			break ;
 		write(fd_tmp, line, ft_strlen(line));
 		free(line);
